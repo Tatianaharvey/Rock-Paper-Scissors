@@ -1,0 +1,85 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: #f4ece2;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100vw;
+    gap: 5px;
+}
+
+.title {
+    font-size: 45px;
+    text-align: center;
+    font-weight: thin;
+    color: #687259;
+    padding-top: 50px;
+}
+
+.firstTo {
+    color: #80ADBC;
+}
+
+.score {
+    display: flex;
+    width: 30vw;
+    justify-content: space-evenly;
+}
+
+h3 {
+    color: #80ADBC;
+}
+
+.movesLeft, .move {
+    color: #CAB08B
+}
+
+.move {
+    font-weight: bold;
+}
+
+
+
+.playerCount, .computerCount {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #80ADBC
+}
+
+.options {
+    display: inline-flex;
+    gap: 20px;
+}
+
+.rock, .paper, .scissors {
+    border: none;
+    background: #Ce9C9D;
+    color: white;
+    cursor: pointer;
+    padding: 0.8rem;
+    width: 100px;
+    border-radius: 20%;
+
+}
+
+.rock:hover, .paper:hover, .scissors:hover {
+    background: #E9BDBE;
+}
+
+.reload {
+    display: none;
+    margin-top: 3rem;
+    padding: 1rem; 
+    background: rgb(195, 234, 195);
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+} 

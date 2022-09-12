@@ -1,68 +1,129 @@
-function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3);
-        switch (randomNumber) {
-            case 0:
-                return 'rock';
-            case 1:
-                return 'paper';
-           case 2: 
-                return 'scissors';
-            default: 
-                return 'invalid';
-        }
-}    
+const game = () => {
+    let playerScore = 0
+    let computerScore = 0
+    let moves = 0;
 
+   
+const playGame = () => {
+    const rockBtn = document.querySelector('.rock');
+    const paperBtn = document.querySelector('.paper');
+    const scissorBtn = document.querySelector('.scissors');
+    const playerSelection = [rockBtn, paperBtn, scissorBtn];
+    const computerSelection = ['rock', 'paper', 'scissors'];
 
-function playRound() {
-    const computerSelection = getComputerChoice();
-    const playerSelection =  prompt("Rock, Paper, or Scissors?").toLowerCase();
-    if (playerSelection === computerSelection) {
-        return "It's a tie!";
-    } else if (playerSelection === 'rock') {
-        if (computerSelection === 'paper') {
-            computerScore +=1;
-            return "You lost! Paper beats rock!"
-        } else {
-            playerScore += 1;
-            return "You win! Rock beats scissors."
-        }
-    } else if (playerSelection === 'paper') {
-        if (computerSelection === 'scissors') {
-            computerScore += 1;
-            return "You lost. Scissors beats paper."
-        } else {
-            playerScore += 1;
-            return "You win! Paper beats rock!"
-        }
-    } else if (playerSelection === 'scissors') {
-        if (computerSelection === 'rock') {
-            computerScore += 1;
-            return "You lost! Rock beats scissors."
-        } else {
-            playerScore += 1;
-            return "You win! Scissors beats paper."
-        }
-    }
+    playerSelection.forEach(option => {
+        option.addEventListener('click', function() {
+            
+        const movesLeft = document.querySelector('.movesLeft');
+        moves++;
+        movesLeft.innerText = `Moves Left: ${5 - moves}`;
+
+        const choiceNumber = Math.floor(Math.random() * 3);
+        const computerChoice = computerSelection[choiceNumber];
+
+        winner(this.innerText,computerChoice)
+        
+        console.log(computerChoice)
+
+        if(moves == 5) {
+            gameOver(playerSelection, movesLeft)
+         }
+       })
+   })
 } 
 
-function game(maxScore) {
-    playerScore = 0;
-    computerScore = 0;
-    for (let i = 0; i <= maxScore; i++) {
-    console.log(playRound());
-      if (i === maxScore) {
-        if (playerScore > computerScore) {
-        console.log("You won the game!");
-      } else if (playerScore < computerScore) {
-        console.log("You lost the game.");
-      } else {
-        console.log("It's a tie");
-      }
+const winner = (player, computer) => {
+    const results = document.querySelector('.results');
+    const playerScoreBoard = document.querySelector('.playerCount');
+    const computerScoreBoard = document.querySelector('.computerCount');
+    player = player.toLowerCase();
+    computer = computer.toLowerCase();
+    if (player === computer) {
+        results.textContent = 'Tie';
+        results.style.color = '#CAB08B';
+    } else if (player == 'rock') {
+        if (computer == 'paper') {
+            results.textContent = 'Computer won.';
+            results.style.color = 'red';
+            computerScore++;
+            computerScoreBoard.textContent = computerScore;
+        
+        } else {
+            results.textContent = "You won!";
+            results.style.color = 'blue';
+            playerScore++;
+            playerScoreBoard.textContent = playerScore;
         }
-     }
+    } else if (player == 'paper') {
+        if (computer == 'scissors') {
+            results.textContent = 'Computer won';
+            results.style.color = 'red';
+            computerScore++;
+            computerScoreBoard.textContent = computerScore;
+        } else {
+            results.textContent = "You won!";
+            results.style.color = 'blue';
+            playerScore++;
+            playerScoreBoard.textContent = playerScore;
+        }
+    } else if (player == 'scissors') {
+        if (computer == 'rock') {
+            results.textContent = 'Computer Won.';
+            results.style.color = 'red';
+            computerScore++;
+            computerScoreBoard.textContent = computerScore; 
+        } else {
+            results.textContent = "You won!";
+            results.style.color = 'blue'; 
+            playerScore++;
+            playerScoreBoard.textContent = playerScore;
+        }
+    }
+}
+
+const gameOver = (playerSelection, movesLeft) => {
+    const chooseMove = document.querySelector('.move');
+    const gameResults = document.querySelector('.gameResults');
+    const reloadBtn = document.querySelector('.reload');
+    const firstTo = document.querySelector('.firstTo')
+
+    playerSelection.forEach(option => {
+        option.style.display = 'none';
+    })
+
+    chooseMove.innerText = 'Game Over!'
+    chooseMove.style.color = "pink"
+    chooseMove.style.fontSize = '2rem;'
+
+    movesLeft.style.display = 'none';
+    firstTo.style.display = 'none';
+
+    if(playerScore > computerScore) {
+        gameResults.style.fontSize = '2rem';
+        gameResults.style.innerText = 'You won the game!'
+        gameResults.style.color = 'blue'; 
+    } else if (playerScore < computerScore) {
+        gameResults.style.fontSize = '2rem';
+        gameResults.style.innerText = 'You lost the game!'
+        gameResults.style.color = 'red'; 
+    } else {
+        gameResults.style.fontSize = '2rem';
+        gameResults.style.innerText = 'It was a tie!'
+        gameResults.style.color = '#CAB08B'; 
     }
 
-console.log(game(4));
-// const computerSelection = getComputerChoice();
-// const playerSelection = prompt("Rock, Paper, or Scissors?");
-// console.log(playRound(playerSelection, computerSelection));
+    reloadBtn.innerText = 'Rematch?';
+    reloadBtn.style.display = 'flex';
+    reloadBtn.style.border = 'none';
+    reloadBtn.addEventListener ('click', () => {
+        window.location.reload();
+    })
+}
+
+    playGame()
+}
+
+game();
+
+
+
