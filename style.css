@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background: #f4ece2;
     font-family: Verdana, Tahoma, sans-serif;
 }
 
@@ -20,7 +19,7 @@
     font-size: 45px;
     text-align: center;
     font-weight: thin;
-    color: #687259;
+    color: #64b5ac;
     padding-top: 50px;
 }
 
@@ -39,7 +38,7 @@ h3 {
 }
 
 .movesLeft, .move {
-    color: #CAB08B
+    color: #B09E99
 }
 
 .move {
@@ -66,7 +65,7 @@ h3 {
     cursor: pointer;
     padding: 0.8rem;
     width: 100px;
-    border-radius: 20%;
+    border-radius: 10%;
 
 }
 
@@ -78,8 +77,9 @@ h3 {
     display: none;
     margin-top: 3rem;
     padding: 1rem; 
-    background: rgb(195, 234, 195);
+    background: rgb(134, 183, 134);
     outline: none;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
 } 

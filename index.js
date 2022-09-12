@@ -21,9 +21,9 @@ const playGame = () => {
         const choiceNumber = Math.floor(Math.random() * 3);
         const computerChoice = computerSelection[choiceNumber];
 
-        winner(this.innerText,computerChoice)
+        winner(this.innerText, computerChoice)
         
-        console.log(computerChoice)
+        
 
         if(moves == 5) {
             gameOver(playerSelection, movesLeft)
@@ -40,7 +40,7 @@ const winner = (player, computer) => {
     computer = computer.toLowerCase();
     if (player === computer) {
         results.textContent = 'Tie';
-        results.style.color = '#CAB08B';
+        results.style.color = '#B09E99';
     } else if (player == 'rock') {
         if (computer == 'paper') {
             results.textContent = 'Computer won.';
@@ -99,17 +99,14 @@ const gameOver = (playerSelection, movesLeft) => {
     firstTo.style.display = 'none';
 
     if(playerScore > computerScore) {
-        gameResults.style.fontSize = '2rem';
         gameResults.style.innerText = 'You won the game!'
-        gameResults.style.color = 'blue'; 
+        gameResults.style.color = '#64b5ac'; 
     } else if (playerScore < computerScore) {
-        gameResults.style.fontSize = '2rem';
         gameResults.style.innerText = 'You lost the game!'
-        gameResults.style.color = 'red'; 
+        gameResults.style.color = '#64b5ac'; 
     } else {
-        gameResults.style.fontSize = '2rem';
         gameResults.style.innerText = 'It was a tie!'
-        gameResults.style.color = '#CAB08B'; 
+        gameResults.style.color = '#64b5ac'; 
     }
 
     reloadBtn.innerText = 'Rematch?';
