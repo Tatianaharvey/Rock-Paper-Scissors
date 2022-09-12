@@ -22,8 +22,7 @@ const playGame = () => {
         const computerChoice = computerSelection[choiceNumber];
 
         winner(this.innerText, computerChoice)
-        
-        
+      
 
         if(moves == 5) {
             gameOver(playerSelection, movesLeft)
@@ -44,69 +43,71 @@ const winner = (player, computer) => {
     } else if (player == 'rock') {
         if (computer == 'paper') {
             results.textContent = 'Computer won.';
-            results.style.color = 'red';
+            results.style.color = '#c86347';
             computerScore++;
             computerScoreBoard.textContent = computerScore;
         
         } else {
             results.textContent = "You won!";
-            results.style.color = 'blue';
+            results.style.color = 'rgb(134, 183, 134)';
             playerScore++;
             playerScoreBoard.textContent = playerScore;
         }
     } else if (player == 'paper') {
         if (computer == 'scissors') {
             results.textContent = 'Computer won';
-            results.style.color = 'red';
+            results.style.color = '#c86347';
             computerScore++;
             computerScoreBoard.textContent = computerScore;
         } else {
             results.textContent = "You won!";
-            results.style.color = 'blue';
+            results.style.color = 'rgb(134, 183, 134)';
             playerScore++;
             playerScoreBoard.textContent = playerScore;
         }
     } else if (player == 'scissors') {
         if (computer == 'rock') {
-            results.textContent = 'Computer Won.';
-            results.style.color = 'red';
+            results.textContent = 'Computer won.';
+            results.style.color = '#c86347';
             computerScore++;
             computerScoreBoard.textContent = computerScore; 
         } else {
             results.textContent = "You won!";
-            results.style.color = 'blue'; 
+            results.style.color = 'rgb(134, 183, 134)'; 
             playerScore++;
             playerScoreBoard.textContent = playerScore;
         }
     }
 }
 
+
 const gameOver = (playerSelection, movesLeft) => {
+    console.log("gameOver")
     const chooseMove = document.querySelector('.move');
-    const gameResults = document.querySelector('.gameResults');
+    const results = document.querySelector('.results');
     const reloadBtn = document.querySelector('.reload');
     const firstTo = document.querySelector('.firstTo')
 
     playerSelection.forEach(option => {
         option.style.display = 'none';
     })
+    movesLeft.style.display = 'none';
+    firstTo.style.display = 'none';
 
     chooseMove.innerText = 'Game Over!'
     chooseMove.style.color = "pink"
     chooseMove.style.fontSize = '2rem;'
 
-    movesLeft.style.display = 'none';
-    firstTo.style.display = 'none';
 
     if(playerScore > computerScore) {
-        gameResults.style.innerText = 'You won the game!'
-        gameResults.style.color = '#64b5ac'; 
+        results.innerText = 'You won the game!'
+        results.style.color = '#64b5ac'; 
     } else if (playerScore < computerScore) {
-        gameResults.style.innerText = 'You lost the game!'
-        gameResults.style.color = '#64b5ac'; 
+        results.innerText = 'You lost the game!'
+        results.style.color = '#c86347'; 
     } else {
-        gameResults.style.innerText = 'It was a tie!'
-        gameResults.style.color = '#64b5ac'; 
+        results.innerText = 'It was a tie!'
+        results.style.color = '#B09E99'; 
     }
 
     reloadBtn.innerText = 'Rematch?';
